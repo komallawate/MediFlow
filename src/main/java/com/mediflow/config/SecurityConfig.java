@@ -52,11 +52,18 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsSource() {
         CorsConfiguration cfg = new CorsConfiguration();
-        cfg.setAllowedOrigins(List.of("http://localhost:3000"));
-        cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        cfg.setAllowedOrigins(List.of(
+            "http://localhost:3000",
+            "https://mediflowfrontend.surge.sh",
+            "https://mediflow-ftme.onrender.com"
+        ));
+        cfg.setAllowedMethods(List.of(
+            "GET", "POST", "PUT", "DELETE", "OPTIONS"
+        ));
         cfg.setAllowedHeaders(List.of("*"));
         cfg.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource src = new UrlBasedCorsConfigurationSource();
+        UrlBasedCorsConfigurationSource src = 
+            new UrlBasedCorsConfigurationSource();
         src.registerCorsConfiguration("/**", cfg);
         return src;
     }
