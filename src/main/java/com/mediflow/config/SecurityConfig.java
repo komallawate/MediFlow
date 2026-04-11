@@ -40,8 +40,7 @@ public class SecurityConfig {
             .csrf(c -> c.disable())
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(a -> a
-                .requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
             .headers(h -> h.frameOptions(f -> f.disable()))
             .authenticationProvider(authProvider())
@@ -62,7 +61,7 @@ public class SecurityConfig {
         ));
         cfg.setAllowedHeaders(List.of("*"));
         cfg.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource src = 
+        UrlBasedCorsConfigurationSource src =
             new UrlBasedCorsConfigurationSource();
         src.registerCorsConfiguration("/**", cfg);
         return src;
